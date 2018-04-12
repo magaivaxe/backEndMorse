@@ -7,60 +7,73 @@ package morse;
  */
 public class Morse implements TraducteurMorse
 {
-    private String alpha;
-    private String morse;
+    final String BCK= "Back-End: Marcos Gomes";
+    final String FTE = "Front_End: Nedal use";
+    final EnumMorse [] ARRAY_ENUM_MORSE = EnumMorse.values();
     
-    private ArbreMorse am;
-
-    public Morse(String mot, String morse)
+    public Morse()
     {
-        this.alpha = mot;
-        this.morse = morse;
-        this.am = new ArbreMorse();
     }
           
     @Override
     public String toAlpha(String morse)
     {
-        String [] splitMorse = morse.split(" ");
-        
-        for (int i = 0; i < splitMorse.length; i++)
+        String stringToReturn = "";
+        //Tableau sans space
+        String [] arrayMorse = morse.split(" ");
+        //Boucle pour choisir le string morse
+        for (String mor : arrayMorse)
         {
-            char [] charMorse = splitMorse[i].toCharArray();
-            for (int j = 0; j < charMorse.length; j++)
+            //Boucle pour choisir le string du EnumMorse
+            for (EnumMorse aem : ARRAY_ENUM_MORSE)
             {
-                
+                //Condition pour concaténer le string avec des charactères
+                if (mor.equals(aem.getMorse()))
+                {
+                    stringToReturn += aem.getLettre();
+                    break;
+                }
             }
         }
-        
-        
-        String toString = "";
-        return toString;
+        return stringToReturn;
     }
 
+    /**
+     * Méthode pour convertir un mot en format morse.
+     * @param alpha Le mot entré
+     * @return Un string sur le format morse
+     */
     @Override
     public String toMorse(String alpha)
     {
-        String toString = "";
-        return toString;
+        String stringToReturn = "";
+        //Tableau de String pour le boucle
+        final char [] CHAR_MORSE = alpha.toLowerCase().toCharArray();
+        //Boucle pour choisir le charactère
+        for (char chm: CHAR_MORSE)
+        {
+            //Boucle pour choisir le EnumMorse pour comparer
+            for (EnumMorse aem : ARRAY_ENUM_MORSE)
+            {
+                //Condition pour concaténer et retourner le String
+                if (chm == aem.getLettre())
+                {
+                    stringToReturn += aem.getMorse();
+                    //Condition pour ne pas ajouter space après le dernier mot
+                    if(chm != CHAR_MORSE[CHAR_MORSE.length - 1])
+                    {stringToReturn += " ";}
+                    break;
+                }
+            }
+        }
+        return stringToReturn;
     }
 
     @Override
-    public String nettoyerAlpha(String alpha)
-    {
-        String toString = "";
-        return toString;
-    }
+    public String nettoyerAlpha(String alpha) {return "";}
 
     @Override
-    public String getNomProgrammeurs(boolean choix)
-    {
-        final String BACK_END = "Marcos Gomes";
-        final String FRONT_END = "Mohamed Nedal use";
-        
-        String toReturn = choix == true ? BACK_END:FRONT_END;
-        
-        return toReturn;
-    }
+    public String getNomProgrammeurs() {return FTE + " " + BCK; }
+    
     
 }

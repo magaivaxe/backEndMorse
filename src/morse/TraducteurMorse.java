@@ -13,5 +13,5 @@ public interface TraducteurMorse
     
     public String nettoyerAlpha(String alpha);
     
-    public String getNomProgrammeurs(boolean choix);
+    public String getNomProgrammeurs();
 }
