@@ -2,8 +2,8 @@ package morse;
 
 
 /**
- *
- * @author Marcos Gomes
+ * Contrat pour suive au TP3 de POO1
+ * @author Rébecca Lapointe
  */
 public interface TraducteurMorse
 {

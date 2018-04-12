@@ -1,11 +1,11 @@
 
 package morse;
 
-import java.util.logging.Logger;
 
 /**
- *  
- * @author Marcos Gomes
+ *  Enumération qui cree la liste des lettres, numéros et symboles. Chaque item
+ *  de la liste est construit avec le charactère correspondant et son morse.
+ * @author Sire Marcos Gomes
  */
 public enum EnumMorse
 {
@@ -25,7 +25,7 @@ public enum EnumMorse
     S5('(',"-.--.-"),S6('.',".-.-.-"),S7('?',"..--.."),S8(';',"-.-.-."),
     S9('/',"-..-."),S10(')',"---.."),S11('=',"-...-"),S12('@',".--.-."),
     S13('"',".-..-."),S14('+',".-.-."),S15(' ',"/");
-
+    //Atributts 
     private char lettre;
     private String morse;
     /**
@@ -37,17 +37,7 @@ public enum EnumMorse
         this.lettre = lettre;
         this.morse = morse;
     }
-    
     //Getters
     public char getLettre(){return lettre;}
     public String getMorse(){return morse;}
-    //Get an EnumMorses array 
-    public EnumMorse [] getArrayEnumMorses()
-    {
-        EnumMorse [] ems = EnumMorse.values();
-        return ems;
-    }
-
-    
-    
 }
