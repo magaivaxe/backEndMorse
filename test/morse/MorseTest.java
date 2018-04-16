@@ -24,9 +24,6 @@ import static org.junit.Assert.*;
  */
 public class MorseTest
 {
-    private static final String BCK = "Marcos Gomes"; 
-    private static final String FRT = "Mohamed Nhidal use"; 
-    private static final EnumMorse [] ARRAY_ENUM_MORSE = EnumMorse.values();
     //Constructor standard
     public MorseTest()
     {
@@ -39,40 +36,76 @@ public class MorseTest
     //Lists to test morse-alpha, alpha-morse;
     private static ArrayList<String> listMorse;
     private static ArrayList<String> listAlpha;
+    private static ArrayList<String> listMorseCopy;
+    private static ArrayList<String> listAlphaCopy;
     //Properties object to set values
     private static Properties prop;
     //File to input
     private static FileInputStream propFile;
     //Random object
     private static Random random;
+    //
+    private final static String SLASH = prop.getProperty("slash");
+    private final static String SPACE = prop.getProperty("space");
     
     @BeforeClass
     public static void setUpClass() throws FileNotFoundException, IOException
     {
         //Properties object to get the properties values
         prop = new Properties();
+        //Objet randomique
+        random = new Random();
         //The file properties and load
         propFile = new FileInputStream("test/morse/valeursTest.properties");
         prop.load(propFile);
+        //
+        String BCK = prop.getProperty("BCK");
+        String FRT = prop.getProperty("FRT");
+        EnumMorse [] ARRAY_ENUM_MORSE = EnumMorse.values();
+        //Object declaration morse
         morseObj = new Morse(BCK, FRT, ARRAY_ENUM_MORSE);
+        //The string values
+        String morseString = prop.getProperty("morse");
+        String alphaString = prop.getProperty("alpha");
+        //Fill the list 
+        for (String i: alphaString.split(" "))
+        {
+            listAlpha.add(i.trim());
+        }
+        for (String i: morseString.split(" "))
+        {
+            listMorse.add(i.trim());
+        }
+        listAlphaCopy = new ArrayList<>();
+        listMorseCopy = new ArrayList<>();
     }
     
     @AfterClass
-    public static void tearDownClass()
+    public static void tearDownClass() throws Exception
     {
-        //Il n'y a pas rien à arrêter après le teste.
+        //Ferme le fichier lorsque le teste fini
+        propFile.close();
     }
     
     @Before
     public void setUp()
     {
-        String morseToEnter = 
+        //Addicionne les nombres pour tester
+        for (String a : listAlpha)
+        {
+            listAlphaCopy.add(a);
+        }
+        for (String m : listMorse)
+        {
+            listMorseCopy.add(m);
+        }
     }
     
     @After
     public void tearDown()
     {
-        
+        listAlphaCopy.clear();
+        listMorseCopy.clear();
     }
 
     /**
@@ -82,12 +115,29 @@ public class MorseTest
     public void testToAlpha()
     {
         System.out.println("Test toAlpha =============================== ");
-        String morseToEnter = ".--. .... .-. .- ... . / -.. . / - . ... - /"
-                + " .---- / ..--- / ...--";
-        String expResult = "Phrase de test 1 2 3";
-        String result = morseObj.toAlpha(morseToEnter);
+        //Variables
+        String morseToEnter;
+        String expResult, result;
+        //Teste pour tous les valeurs des morse-alpha
+        while (!listMorseCopy.isEmpty())
+        {
+            //Index choisit au hasard
+            int index = random.nextInt(listMorseCopy.size());
+            //Valeur choisi
+            morseToEnter = listMorseCopy.get(index);
+            //Results
+            expResult = listAlphaCopy.get(index);
+            result = morseObj.toAlpha(morseToEnter);
+            //Comparaison des resultats
+            assertEquals(expResult, result);
+            //Exclusion des indexes choisis
+            listAlphaCopy.remove(index);
+            listMorseCopy.remove(index);
+        }
+        //Tester le / à space.
+        expResult = SPACE;
+        result = morseObj.toAlpha(SLASH);
         assertEquals(expResult, result);
-        
         System.out.println("Fin test toAlpha =========================== ");
     }
 
@@ -97,14 +147,32 @@ public class MorseTest
     @Test
     public void testToMorse()
     {
-        System.out.println("toMorse");
-        String alpha = "";
-        Morse instance = new Morse();
-        String expResult = "";
-        String result = instance.toMorse(alpha);
+        System.out.println("Test toMorse =============================== ");
+        //Variables
+        String alphaToEnter;
+        String expResult, result;
+        //Teste pour tous les valeurs des morse-alpha
+        while (!listAlphaCopy.isEmpty())
+        {
+            //Index choisit au hasard
+            int index = random.nextInt(listAlphaCopy.size());
+            //Valeur choisi
+            alphaToEnter = listAlphaCopy.get(index);
+            //Results
+            expResult = listMorseCopy.get(index);
+            result = morseObj.toAlpha(alphaToEnter);
+            //Comparaison des resultats
+            assertEquals(expResult, result);
+            //Exclusion des indexes choisis
+            listAlphaCopy.remove(index);
+            listMorseCopy.remove(index);
+        }
+        //Tester le space à /.
+        expResult = SLASH;
+        result = morseObj.toAlpha(SPACE);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        System.out.println("Fin test tomorse =========================== ");
     }
 
     /**
@@ -113,14 +181,17 @@ public class MorseTest
     @Test
     public void testNettoyerAlpha()
     {
-        System.out.println("nettoyerAlpha");
-        String alpha = "";
-        Morse instance = new Morse();
-        String expResult = "";
-        String result = instance.nettoyerAlpha(alpha);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("Teste nettoyerAlpha ======================== ");
+        
+        for (int i = 0; i < listAlphaCopy.size(); i++)
+        {
+            String pourNettoyer = listAlphaCopy.get(i);
+            String expResult = "";
+            String result = morseObj.nettoyerAlpha(pourNettoyer);
+            assertEquals(expResult, result);
+        }
+        
+        System.out.println("Fin teste nettoyerAlpha ======================== ");
     }
 
     /**
@@ -129,13 +200,6 @@ public class MorseTest
     @Test
     public void testGetNomProgrammeurs()
     {
-        System.out.println("getNomProgrammeurs");
-        Morse instance = new Morse();
-        String expResult = "";
-        String result = instance.getNomProgrammeurs();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

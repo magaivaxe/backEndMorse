@@ -12,7 +12,6 @@ public class MorseStub implements TraducteurMorse
     {
     }
 
-
     @Override
     public String toAlpha(String morse)
     {
