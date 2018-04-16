@@ -44,13 +44,15 @@ public class MorseTest
     private static FileInputStream propFile;
     //Random object
     private static Random random;
-    //
-    private final static String SLASH = prop.getProperty("slash");
-    private final static String SPACE = prop.getProperty("space");
     
     @BeforeClass
     public static void setUpClass() throws FileNotFoundException, IOException
     {
+        //Les listes
+        listAlphaCopy = new ArrayList<>();
+        listMorseCopy = new ArrayList<>();
+        listAlpha = new ArrayList<>();
+        listMorse = new ArrayList<>();
         //Properties object to get the properties values
         prop = new Properties();
         //Objet randomique
@@ -76,8 +78,7 @@ public class MorseTest
         {
             listMorse.add(i.trim());
         }
-        listAlphaCopy = new ArrayList<>();
-        listMorseCopy = new ArrayList<>();
+        
     }
     
     @AfterClass
@@ -135,8 +136,8 @@ public class MorseTest
             listMorseCopy.remove(index);
         }
         //Tester le / à space.
-        expResult = SPACE;
-        result = morseObj.toAlpha(SLASH);
+        expResult = " ";
+        result = morseObj.toAlpha("/");
         assertEquals(expResult, result);
         System.out.println("Fin test toAlpha =========================== ");
     }
@@ -168,8 +169,8 @@ public class MorseTest
             listMorseCopy.remove(index);
         }
         //Tester le space à /.
-        expResult = SLASH;
-        result = morseObj.toAlpha(SPACE);
+        expResult = "/";
+        result = morseObj.toAlpha(" ");
         assertEquals(expResult, result);
         
         System.out.println("Fin test tomorse =========================== ");
