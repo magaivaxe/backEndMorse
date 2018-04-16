@@ -160,8 +160,9 @@ public class MorseTest
             //Valeur choisi
             alphaToEnter = listAlphaCopy.get(index);
             //Results
-            expResult = listMorseCopy.get(index);
+            expResult = listMorseCopy.get(index);   
             result = morseObj.toAlpha(alphaToEnter);
+            System.out.println(result);
             //Comparaison des resultats
             assertEquals(expResult, result);
             //Exclusion des indexes choisis
