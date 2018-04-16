@@ -1,17 +1,25 @@
 
 package morse;
 
+import java.text.Normalizer;
+
 /**
  * Classe pour convertir du code morse en alpha charactères et vice-versa.
  * @author Sire Marcos Gomes
  */
 public class Morse implements TraducteurMorse
 {
-    final String BCK= "Back-End: Marcos Gomes";
-    final String FTE = "Front_End: Nedal use";
-    final EnumMorse [] ARRAY_ENUM_MORSE = EnumMorse.values();
+    private final String BCK; 
+    private final String FRT; 
+    private final EnumMorse [] ARRAY_ENUM_MORSE; 
     
-    public Morse(){}
+    
+    public Morse(String BCK, String FTE, EnumMorse [] ARRAY_ENUM_MORSE)
+    {
+        this.BCK = BCK;
+        this.FRT = FTE;
+        this.ARRAY_ENUM_MORSE = ARRAY_ENUM_MORSE;
+    }
           
     @Override
     public String toAlpha(String morse){
@@ -72,7 +80,33 @@ public class Morse implements TraducteurMorse
      * @return Les auteurs du logiciel
      */
     @Override
-    public String getNomProgrammeurs() {return FTE + " " + BCK; }
+    public String getNomProgrammeurs() {return FRT + " " + BCK; }
+    
+    /**
+     * convert un string en autre string sans accents 
+     * @param input string avec accents
+     * @return un string sans accents
+     */
+    private String normaliser(String input)
+    {
+        return Normalizer.normalize(input, Normalizer.Form.NFD);
+    }
+    
+    public String getBCK()
+    {
+        return BCK;
+    }
+
+    public String getFRT()
+    {
+        return FRT;
+    }
+
+    public EnumMorse[] getARRAY_ENUM_MORSE()
+    {
+        return ARRAY_ENUM_MORSE;
+    }
+    
     
     
 }
