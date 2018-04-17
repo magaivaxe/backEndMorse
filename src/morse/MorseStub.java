@@ -15,37 +15,63 @@ public class MorseStub implements TraducteurMorse
     @Override
     public String toAlpha(String morse)
     {
-        if (morse.equals("."))
+        if (morse.equals("-"))
         {
-            return "e";
+            return "t";
         }
-        if (morse.equals(".."))
+        else if (morse.equals("--"))
         {
-            return "i";
+            return "m";
         }
-        if (morse.equals("..."))
+        else if (morse.equals("---"))
         {
-            return "s";
+            return "o";
         }
-        return null;
+        else if(morse.equals("-----"))
+        {
+            return "0";
+        }
+        else
+        {
+            return "Pas trouvé";
+        }
     }
 
     @Override
     public String toMorse(String alpha)
     {
-        if (alpha.equals("e"))
+        if (alpha.equals("!"))
         {
-            return ".";
+            return "-.-.--";
         }
-        if (alpha.equals("i"))
+        else if (alpha.equals("@"))
         {
-            return "..";
+            return ".--.-.";
         }
-        if (alpha.equals("s"))
+        else if (alpha.equals("$"))
         {
-            return "...";
+            return "...-..-";
         }
-        return null;
+        else if(alpha.equals(" "))
+        {
+            return "/";
+        }
+        else if(alpha.equals("x"))
+        {
+            return "-..-";
+        }
+        else if(alpha.equals("2"))
+        {
+            return "..---";
+        }
+        else if(alpha.equals("="))
+        {
+            return "-...-";
+        }
+        else
+        {
+            return "Pas trouvé";
+        }
     }
 
     @Override

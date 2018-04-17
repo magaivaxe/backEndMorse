@@ -8,22 +8,24 @@ import java.text.Normalizer;
  * @author Sire Marcos Gomes
  */
 public class Morse implements TraducteurMorse{
-    private final String BCK; 
-    private final String FRT; 
-    private final EnumMorse [] ARRAY_ENUM_MORSE; 
+    private final String BCK,FRT,MSG,VIDE,SPACE;
+    private final EnumMorse [] ARRAY_ENUM_MORSE;
     
     public Morse(){
         this.BCK = "Marcos";
         this.FRT = "Nidhal";
+        this.MSG = "Pas trouvé";
+        this.VIDE = "";
+        this.SPACE = " ";
         this.ARRAY_ENUM_MORSE = EnumMorse.values();
     }
           
     @Override
     public String toAlpha(String morse){
         try{
-            String stringToReturn = "";
+            String stringToReturn = VIDE;
             //Tableau sans space
-            String [] arrayMorse = morse.split(" ");
+            String [] arrayMorse = morse.split(SPACE);
             //Boucle pour choisir le string morse
             for (String mor : arrayMorse){
                 //Boucle pour choisir le string du EnumMorse
@@ -35,7 +37,8 @@ public class Morse implements TraducteurMorse{
                     }
                 }
             }
-            return stringToReturn;
+            if(stringToReturn.equals(VIDE)){return MSG;}
+            else {return stringToReturn;}
         }
         catch (IllegalArgumentException e){
             return e.getMessage();
@@ -49,7 +52,7 @@ public class Morse implements TraducteurMorse{
     @Override
     public String toMorse(String alpha){
         try{
-            String stringToReturn = "";
+            String stringToReturn = VIDE;
             //Tableau de String pour le boucle
             final char [] CHAR_MORSE = alpha.toLowerCase().toCharArray();
             //Boucle pour choisir le charactère
@@ -61,12 +64,13 @@ public class Morse implements TraducteurMorse{
                         stringToReturn += aem.getMorse();
                         //Condition pour ne pas ajouter space après le dernier mot
                         if(chm != CHAR_MORSE[CHAR_MORSE.length - 1])
-                        {stringToReturn += " ";}
+                        {stringToReturn += SPACE;}
                         break;
                     }
                 }
             }
-            return stringToReturn;
+            if(stringToReturn.equals(VIDE)){return MSG;}
+            else {return stringToReturn;}
         }
         catch (IllegalArgumentException e){
             return e.getMessage();
@@ -78,13 +82,13 @@ public class Morse implements TraducteurMorse{
      * @return a string vide
      */
     @Override
-    public String nettoyerAlpha(String alpha) {return "";}
+    public String nettoyerAlpha(String alpha) {return VIDE;}
     /**
      * 
      * @return Les auteurs du logiciel
      */
     @Override
-    public String getNomProgrammeurs() {return FRT + " " + BCK; }
+    public String getNomProgrammeurs() {return FRT + SPACE + BCK; }
     /**
      * convert un string en autre string sans accents 
      * @param input string avec accents
@@ -93,10 +97,7 @@ public class Morse implements TraducteurMorse{
     private String normaliser(String input){
         return Normalizer.normalize(input, Normalizer.Form.NFD);
     }
-    
     public String getBCK(){return BCK;}
-
     public String getFRT(){return FRT;}
-
     public EnumMorse[] getARRAY_ENUM_MORSE(){return ARRAY_ENUM_MORSE;}
 }
