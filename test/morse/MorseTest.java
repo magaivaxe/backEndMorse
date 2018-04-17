@@ -60,12 +60,8 @@ public class MorseTest
         //The file properties and load
         propFile = new FileInputStream("test/morse/valeursTest.properties");
         prop.load(propFile);
-        //
-        String BCK = prop.getProperty("BCK");
-        String FRT = prop.getProperty("FRT");
-        EnumMorse [] ARRAY_ENUM_MORSE = EnumMorse.values();
         //Object declaration morse
-        morseObj = new Morse(BCK, FRT, ARRAY_ENUM_MORSE);
+        morseObj = new Morse();
         //The string values
         String morseString = prop.getProperty("morse");
         String alphaString = prop.getProperty("alpha");

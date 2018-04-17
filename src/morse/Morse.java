@@ -14,11 +14,11 @@ public class Morse implements TraducteurMorse
     private final EnumMorse [] ARRAY_ENUM_MORSE; 
     
     
-    public Morse(String BCK, String FTE, EnumMorse [] ARRAY_ENUM_MORSE)
+    public Morse()
     {
-        this.BCK = BCK;
-        this.FRT = FTE;
-        this.ARRAY_ENUM_MORSE = ARRAY_ENUM_MORSE;
+        this.BCK = "Marcos";
+        this.FRT = "Nidhal";
+        this.ARRAY_ENUM_MORSE = EnumMorse.values();
     }
           
     @Override
