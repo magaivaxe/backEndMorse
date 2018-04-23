@@ -38,7 +38,7 @@ public class Morse implements TraducteurMorse{
                 }
             }
             if(stringToReturn.equals(VIDE)){return MSG;}
-            else {return stringToReturn;}
+            else {return stringToReturn.toUpperCase();}
         }
         catch (IllegalArgumentException e){
             return e.getMessage();
