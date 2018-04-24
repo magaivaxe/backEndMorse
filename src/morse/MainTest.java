@@ -10,7 +10,7 @@ public class MainTest
     
     public static void main(String[] args)
     {
-        String str = "#########";
+        String str = "ééé";
         
         String mor = "---";
         

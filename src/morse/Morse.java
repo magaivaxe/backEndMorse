@@ -52,9 +52,10 @@ public class Morse implements TraducteurMorse{
     @Override
     public String toMorse(String alpha){
         try{
+            String alphaNt = nettoyerAlpha(alpha);
             String stringToReturn = VIDE;
             //Tableau de String pour le boucle
-            final char [] CHAR_MORSE = alpha.toLowerCase().toCharArray();
+            final char [] CHAR_MORSE = alphaNt.toLowerCase().toCharArray();
             //Boucle pour choisir le charactère
             for (char chm: CHAR_MORSE){
                 //Boucle pour choisir le EnumMorse pour comparer
@@ -82,7 +83,11 @@ public class Morse implements TraducteurMorse{
      * @return a string vide
      */
     @Override
-    public String nettoyerAlpha(String alpha) {return VIDE;}
+    public String nettoyerAlpha(String alpha) 
+    {
+        return Normalizer.normalize(alpha, Normalizer.Form.NFD)
+                .replaceAll("[\u0300-\u036F]", "");
+    }
     /**
      * 
      * @return Les auteurs du logiciel
