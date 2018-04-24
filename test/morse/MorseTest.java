@@ -34,8 +34,12 @@ public class MorseTest
     //Lists to test morse-alpha, alpha-morse;
     private static ArrayList<String> listMorse;
     private static ArrayList<String> listAlpha;
+    private static ArrayList<String> listSpecials;
+    private static ArrayList<String> listNormals;
     private static ArrayList<String> listMorseCopy;
     private static ArrayList<String> listAlphaCopy;
+    //Arrays to receive the Strings spliteds
+    private static String [] arrayMorse, arrayAlpha, arrayNormals, arraySpecials;
     //Properties object to set values
     private static Properties prop;
     //File to input
@@ -45,11 +49,13 @@ public class MorseTest
     
     @BeforeClass
     public static void setUpClass() throws FileNotFoundException, IOException{
-        //Les listes
+        //Les listes and arrays
         listAlphaCopy = new ArrayList<>();
         listMorseCopy = new ArrayList<>();
         listAlpha = new ArrayList<>();
         listMorse = new ArrayList<>();
+        listNormals = new ArrayList<>();
+        listSpecials = new ArrayList<>();
         //Properties object to get the properties values
         prop = new Properties();
         //Objet randomique
@@ -62,12 +68,21 @@ public class MorseTest
         //The string values
         String morseString = prop.getProperty("morse");
         String alphaString = prop.getProperty("alpha");
+        String normalString = prop.getProperty("normals");
+        String specialString = prop.getProperty("specials");
+        //Fill the arrays spliteds
+        arrayMorse = morseString.split(" ");
+        arrayAlpha = alphaString.split(" ");
+        arrayNormals = normalString.split(" ");
+        arraySpecials = specialString.split(" ");
         //Fill the list 
-        for (String i: alphaString.split(" ")){
-            listAlpha.add(i.trim());
+        for (int i = 0; i < arrayAlpha.length; i++){
+            listAlpha.add(arrayAlpha[i].trim());
+            listMorse.add(arrayMorse[i].trim());
         }
-        for (String i: morseString.split(" ")){
-            listMorse.add(i.trim());
+        for (int j = 0; j < arrayNormals.length; j++){
+            listNormals.add(arrayNormals[j].trim());
+            listSpecials.add(arraySpecials[j].trim());
         } 
     }
     
@@ -80,7 +95,7 @@ public class MorseTest
     public void setUp(){
         //Addicionne les nombres pour tester
         for (String a : listAlpha){
-            listAlphaCopy.add(a);
+            listAlphaCopy.add(a.toUpperCase());
         }
         for (String m : listMorse){
             listMorseCopy.add(m);
@@ -164,16 +179,9 @@ public class MorseTest
         System.out.println("Teste nettoyerAlpha ======================== ");
         
         //Clean the edit text alpha 
-        for (int i = 0; i < listAlphaCopy.size(); i++){
-            String pourNettoyer = listAlphaCopy.get(i);
-            String expResult = "";
-            String result = morseObj.nettoyerAlpha(pourNettoyer);
-            assertEquals(expResult, result);
-        }
-        //Clean the edit text morse
-        for (int i = 0; i < listMorseCopy.size(); i++){
-            String pourNettoyer = listMorseCopy.get(i);
-            String expResult = "";
+        for (int i = 0; i < listSpecials.size(); i++){
+            String pourNettoyer = listSpecials.get(i);
+            String expResult = listNormals.get(i);
             String result = morseObj.nettoyerAlpha(pourNettoyer);
             assertEquals(expResult, result);
         }
