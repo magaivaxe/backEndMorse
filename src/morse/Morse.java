@@ -37,7 +37,7 @@ public class Morse implements TraducteurMorse{
                     }
                 }
             }
-            if(stringToReturn.equals(VIDE)){return MSG;}
+            if(stringToReturn.equals(VIDE)){return MSG.toUpperCase();}
             else {return stringToReturn.toUpperCase();}
         }
         catch (IllegalArgumentException e){
@@ -94,15 +94,5 @@ public class Morse implements TraducteurMorse{
      */
     @Override
     public String getNomProgrammeurs() {return FRT + SPACE + BCK; }
-    /**
-     * convert un string en autre string sans accents 
-     * @param input string avec accents
-     * @return un string sans accents
-     */
-    private String normaliser(String input){
-        return Normalizer.normalize(input, Normalizer.Form.NFD);
-    }
-    public String getBCK(){return BCK;}
-    public String getFRT(){return FRT;}
-    public EnumMorse[] getARRAY_ENUM_MORSE(){return ARRAY_ENUM_MORSE;}
+    
 }
