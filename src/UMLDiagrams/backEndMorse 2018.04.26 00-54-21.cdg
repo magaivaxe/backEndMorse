@@ -2,16 +2,7 @@
 
 <ClassDiagram name="backEndMorse">
   <ClassDiagramComponents>
-    <Class name="MainTest" package="morse" visibility="public" xPosition="321.0" yPosition="55.0">
-      <Fields/>
-      <Constructors/>
-      <Methods>
-        <Method name="main" returnType="String[]" visibility="public" isStatic="true">
-          <Argument type="String[]" name="args"/>
-        </Method>
-      </Methods>
-    </Class>
-    <Class name="Morse" package="morse" visibility="public" xPosition="855.0" yPosition="432.0">
+    <Class name="Morse" package="morse" visibility="public" xPosition="271.0" yPosition="408.0">
       <Fields>
         <Field name="BCK" type="String" visibility="private" isFinal="true"/>
         <Field name="ARRAY_ENUM_MORSE" type="EnumMorse[]" visibility="private" isFinal="true"/>
@@ -36,7 +27,7 @@
         <Method name="getNomProgrammeurs" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="MorseStub" package="morse" visibility="public" xPosition="1115.0" yPosition="432.0">
+    <Class name="MorseStub" package="morse" visibility="public" xPosition="559.0" yPosition="244.0">
       <Fields/>
       <Constructors>
         <Constructor visibility="public"/>
@@ -54,7 +45,28 @@
         <Method name="getNomProgrammeurs" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Interface name="TraducteurMorse" package="morse" visibility="public" xPosition="1021.0" yPosition="196.0">
+    <Class name="MainActivity" package="morse" visibility="public" xPosition="215.0" yPosition="23.0">
+      <Fields>
+        <Field name="alpha" type="EditText" visibility="private"/>
+        <Field name="morse" type="EditText" visibility="private"/>
+        <Field name="ajouterAlpha" type="String" visibility="private"/>
+        <Field name="monAlphaText" type="String" visibility="private"/>
+        <Field name="monMorseText" type="String" visibility="private"/>
+        <Field name="morseObj" type="TraducteurMorse" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="closeKeyboard" returnType="void" visibility="public"/>
+        <Method name="afterTextChanged" returnType="void" visibility="public"/>
+        <Method name="point" returnType="void" visibility="public"/>
+        <Method name="moins" returnType="void" visibility="public"/>
+        <Method name="slash" returnType="void" visibility="public"/>
+        <Method name="jouer" returnType="void" visibility="public"/>
+        <Method name="effacer" returnType="void" visibility="public"/>
+        <Method name="espace" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="TraducteurMorse" package="morse" visibility="public" xPosition="436.0" yPosition="23.0">
       <Methods>
         <Method name="toAlpha" returnType="String" visibility="public">
           <Argument type="String" name="morse"/>
@@ -68,7 +80,7 @@
         <Method name="getNomProgrammeurs" returnType="String" visibility="public"/>
       </Methods>
     </Interface>
-    <Enum name="EnumMorse" package="morse" visibility="public" xPosition="321.0" yPosition="221.0">
+    <Enum name="EnumMorse" package="morse" visibility="public" xPosition="6.0" yPosition="5.0">
       <Literals>
         <Literal name="A"/>
         <Literal name="B"/>
@@ -127,15 +139,10 @@
         <Literal name="S19"/>
       </Literals>
     </Enum>
-    <Class name="MainActivity" package="morse" visibility="public" xPosition="603.0" yPosition="196.0">
-      <Fields/>
-      <Constructors/>
-      <Methods/>
-    </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
+    <UseRelation name="Use" source="morse.Morse" target="morse.MainActivity" sourceCardinality="1..1" targetCardinality="1..1"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="morse.Morse" target="morse.TraducteurMorse"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="morse.MorseStub" target="morse.TraducteurMorse"/>
-    <UseRelation name="Use" source="morse.Morse" target="morse.MainActivity" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
