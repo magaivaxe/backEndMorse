@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="backEndMorse">
+  <ClassDiagramComponents>
+    <Class name="MainTest" package="morse" visibility="public" xPosition="321.0" yPosition="55.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="String[]" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Morse" package="morse" visibility="public" xPosition="855.0" yPosition="432.0">
+      <Fields>
+        <Field name="BCK" type="String" visibility="private" isFinal="true"/>
+        <Field name="ARRAY_ENUM_MORSE" type="EnumMorse[]" visibility="private" isFinal="true"/>
+        <Field name="FRT" type="String" visibility="private"/>
+        <Field name="MSG" type="String" visibility="private"/>
+        <Field name="SPACE" type="String" visibility="private"/>
+        <Field name="VIDE" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="toAlpha" returnType="String" visibility="public">
+          <Argument type="String" name="morse"/>
+        </Method>
+        <Method name="toMorse" returnType="String" visibility="public">
+          <Argument type="String" name="alpha"/>
+        </Method>
+        <Method name="nettoyerAlpha" returnType="String" visibility="public">
+          <Argument type="String" name="alpha"/>
+        </Method>
+        <Method name="getNomProgrammeurs" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MorseStub" package="morse" visibility="public" xPosition="1115.0" yPosition="432.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="toAlpha" returnType="String" visibility="public">
+          <Argument type="String" name="morse"/>
+        </Method>
+        <Method name="toMorse" returnType="String" visibility="public">
+          <Argument type="String" name="alpha"/>
+        </Method>
+        <Method name="nettoyerAlpha" returnType="String" visibility="public">
+          <Argument type="String" name="alpha"/>
+        </Method>
+        <Method name="getNomProgrammeurs" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="TraducteurMorse" package="morse" visibility="public" xPosition="1021.0" yPosition="196.0">
+      <Methods>
+        <Method name="toAlpha" returnType="String" visibility="public">
+          <Argument type="String" name="morse"/>
+        </Method>
+        <Method name="toMorse" returnType="String" visibility="public">
+          <Argument type="String" name="alpha"/>
+        </Method>
+        <Method name="nettoyerAlpha" returnType="String" visibility="public">
+          <Argument type="String" name="alpha"/>
+        </Method>
+        <Method name="getNomProgrammeurs" returnType="String" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Enum name="EnumMorse" package="morse" visibility="public" xPosition="321.0" yPosition="221.0">
+      <Literals>
+        <Literal name="A"/>
+        <Literal name="B"/>
+        <Literal name="C"/>
+        <Literal name="D"/>
+        <Literal name="E"/>
+        <Literal name="F"/>
+        <Literal name="G"/>
+        <Literal name="H"/>
+        <Literal name="I"/>
+        <Literal name="J"/>
+        <Literal name="K"/>
+        <Literal name="L"/>
+        <Literal name="M"/>
+        <Literal name="N"/>
+        <Literal name="O"/>
+        <Literal name="P"/>
+        <Literal name="Q"/>
+        <Literal name="R"/>
+        <Literal name="S"/>
+        <Literal name="T"/>
+        <Literal name="U"/>
+        <Literal name="V"/>
+        <Literal name="W"/>
+        <Literal name="X"/>
+        <Literal name="Y"/>
+        <Literal name="Z"/>
+        <Literal name="N0"/>
+        <Literal name="N1"/>
+        <Literal name="N2"/>
+        <Literal name="N3"/>
+        <Literal name="N4"/>
+        <Literal name="N5"/>
+        <Literal name="N6"/>
+        <Literal name="N7"/>
+        <Literal name="N8"/>
+        <Literal name="N9"/>
+        <Literal name="S1"/>
+        <Literal name="S2"/>
+        <Literal name="S3"/>
+        <Literal name="S4"/>
+        <Literal name="S5"/>
+        <Literal name="S6"/>
+        <Literal name="S7"/>
+        <Literal name="S8"/>
+        <Literal name="S9"/>
+        <Literal name="S10"/>
+        <Literal name="S11"/>
+        <Literal name="S12"/>
+        <Literal name="S13"/>
+        <Literal name="S14"/>
+        <Literal name="S15"/>
+        <Literal name="S16"/>
+        <Literal name="S17"/>
+        <Literal name="S18"/>
+        <Literal name="S19"/>
+      </Literals>
+    </Enum>
+    <Class name="MainActivity" package="morse" visibility="public" xPosition="603.0" yPosition="196.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="morse.Morse" target="morse.TraducteurMorse"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="morse.MorseStub" target="morse.TraducteurMorse"/>
+    <UseRelation name="Use" source="morse.Morse" target="morse.MainActivity" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
